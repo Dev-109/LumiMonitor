@@ -6,4 +6,9 @@
     <string name="interact_over_voice_with_baby">Interact over voice with baby</string>
     <string name="adjust_lighting">Adjust lighting</string>
     <string name="contact_us">Contact us</string>
+    <string name="signup">Sign Up </string>
+    <string name="register">Register</string>
+    <string name="registerMessage">TextView</string>
+    <string name="temperature">Temperature</string>
+
 </resources>

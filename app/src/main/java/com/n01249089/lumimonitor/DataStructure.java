@@ -32,6 +32,7 @@ public class DataStructure {
     public void setMicIn(String micIn){
         this.micIn = micIn;
     }
+
     public String getRgb() {
 
         return rgb;
@@ -80,6 +81,7 @@ public class DataStructure {
     }
     public String getTemp() {
 
+        System.out.println("Temperature:25 degrees");
         return temperature;
 
     }
