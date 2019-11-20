@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".signUp"></activity>
+        <activity android:name=".microphone"></activity>
+        <activity android:name=".rgbSettings" />
+        <activity android:name=".lighting" />
+        <activity android:name=".contactUs" />
+        <activity android:name=".signUp" />
         <activity android:name=".temperature" />
         <activity android:name=".Menu1" />
+        <activity android:name=".AddToDatabase" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

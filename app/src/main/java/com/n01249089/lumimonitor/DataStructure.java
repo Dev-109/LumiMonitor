@@ -12,15 +12,15 @@ public class DataStructure {
     public DataStructure() {
     }
 
-    public DataStructure(String temperature, String humidity, String lightLevel, String micIn, String timestamp, String rgb, String micOut) {
+    public DataStructure(String temperature, String humidity, String lightLevel, String micIn, String micOut, String rgb,String timestamp) {
 
 
         this.temperature = temperature;
         this.humidity = humidity;
         this.lightLevel = lightLevel;
         this.micIn = micIn;
-        this.rgb = rgb;
         this.micOut= micOut;
+        this.rgb = rgb;
         this.timestamp = timestamp;
 
     }
@@ -81,7 +81,6 @@ public class DataStructure {
     }
     public String getTemp() {
 
-        System.out.println("Temperature:25 degrees");
         return temperature;
 
     }
