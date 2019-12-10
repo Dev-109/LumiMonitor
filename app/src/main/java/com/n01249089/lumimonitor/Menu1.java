@@ -28,6 +28,7 @@ public class Menu1 extends AppCompatActivity {
         mic_button = findViewById(R.id.button2);
 
 
+
         temp_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +95,8 @@ public class Menu1 extends AppCompatActivity {
         Intent intent = new Intent(Menu1.this, microphone.class);
         startActivity(intent);
     }
+
+
     //add a toast to show when successfully signed in
     /**
      * customizable toast

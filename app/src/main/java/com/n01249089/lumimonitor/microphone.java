@@ -46,6 +46,7 @@ public class microphone extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_microphone);
+        setupTitleandHomeButton();
         this.setTitle("Microphone Interface");
         getDatabase();
         findAllViews();
@@ -57,7 +58,6 @@ public class microphone extends AppCompatActivity {
         micIn = findViewById(R.id.textView2);
         micOut = findViewById(R.id.textView3);
         timestamp = findViewById(R.id.timestamp);
-        back = findViewById(R.id.button7);
     }
     private void getDatabase() {
         // TODO: Find the reference form the database.
@@ -150,11 +150,19 @@ public class microphone extends AppCompatActivity {
                 Log.d("MapleLeaf", "Data Loading Canceled/Failed.", databaseError.toException());
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+    private void setupTitleandHomeButton() {
+        getSupportActionBar().setSubtitle("Firebase temp");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
                 finish();
-            }
-        });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

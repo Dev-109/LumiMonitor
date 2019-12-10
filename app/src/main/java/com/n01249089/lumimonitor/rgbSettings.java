@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -47,17 +50,23 @@ public class rgbSettings extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_rgb_settings);
+            setupTitleandHomeButton();
             this.setTitle("RGB Options");
             getDatabase();
             findAllViews();
             reterieveData();
         }
-
+        /* save.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            writeData(temperature.getText(), humidity.getText(), lightLevel.getText(),micIn.getText(),micOut.getText(),rgb.getText());
+        }
+    });
+*/
 
         private void findAllViews() {
             Rgb = findViewById(R.id.textView2);
             timestamp = findViewById(R.id.timestamp);
-            back = findViewById(R.id.button7);
         }
         private void getDatabase() {
             // TODO: Find the reference form the database.
@@ -66,6 +75,44 @@ public class rgbSettings extends AppCompatActivity {
             String path = "userdata/" + mAuth.getUid();  // read from the user account.
             myRef = database.getReference(path);
         }
+
+    private DataStructure createData(Editable temperature, Editable humidity, Editable lightLevel, Editable micIn, Editable micOut, Editable rgb){
+        // TODO: Get the timestamp
+        Long time = System.currentTimeMillis()/1000;
+        String timestamp = time.toString();
+        return new DataStructure(String.valueOf(temperature),
+                String.valueOf(humidity),
+                String.valueOf(lightLevel),
+                String.valueOf(micIn),
+                String.valueOf(micOut),
+                String.valueOf(rgb),
+                timestamp);
+    }
+
+    private void writeData(Editable temperature, Editable humidity, Editable lightLevel, Editable micIn, Editable micOut, Editable rgb) {
+
+        DataStructure mData = createData(temperature, humidity, lightLevel,micIn,micOut,rgb);
+        // Select one of the following methods to update the data.
+        // 1. To set the value of data
+        //myRef.setValue(mData);
+        // 2. To create a new node on database.
+        // myRef.push().setValue(mData);
+        myRef.push().setValue(rgb);
+        // TODO: Write the data to the database.
+        // 3. To create a new node on database and detect if the writing is successful.
+        myRef.push().setValue(mData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), "Value was set. ", Toast.LENGTH_LONG).show();
+                // gotoRead();  // after write the data, read it from another screen.
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Writing failed", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
         private void reterieveData() {
             // TODO: Get the data on a single node.
@@ -147,11 +194,22 @@ public class rgbSettings extends AppCompatActivity {
                     Log.d("MapleLeaf", "Data Loading Canceled/Failed.", databaseError.toException());
                 }
             });
-            back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+
     }
+    private void setupTitleandHomeButton() {
+//        getSupportActionBar().setSubtitle("Firebase temp");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

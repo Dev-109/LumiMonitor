@@ -91,6 +91,7 @@ public class AddToDatabase extends AppCompatActivity {
         //myRef.setValue(mData);
         // 2. To create a new node on database.
        // myRef.push().setValue(mData);
+       // myRef.push().setValue(rgb);
         // TODO: Write the data to the database.
         // 3. To create a new node on database and detect if the writing is successful.
         myRef.push().setValue(mData).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -115,7 +116,7 @@ public class AddToDatabase extends AppCompatActivity {
         lightLevel = findViewById(R.id.lightLevel);
         micIn = findViewById(R.id.micIn);
         micOut = findViewById(R.id.micOut);
-        rgb = findViewById(R.id.rgb);
+       // rgb = findViewById(R.id.rgb);
         back = findViewById(R.id.button7);
 
     }

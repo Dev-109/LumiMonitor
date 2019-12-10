@@ -36,20 +36,34 @@ public class temperature extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     DataStructure mData;
-    private Button back;
 
     private TextView temperature;
     private TextView humidity;
     private TextView timestamp;
-   
+    private Button graph,graph2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
+        setupTitleandHomeButton();
         this.setTitle("Reading Temperature & Humidity from Database");
         getDatabase();
         findAllViews();
         reterieveData();
+        graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opengraphTemp();
+            }
+        });
+        graph2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opengraphHumidity();
+            }
+        });
     }
 
 
@@ -57,8 +71,10 @@ public class temperature extends AppCompatActivity {
         temperature = findViewById(R.id.textView2);
         humidity = findViewById(R.id.textView3);
         timestamp = findViewById(R.id.timestamp);
-        back = findViewById(R.id.button7);
+        graph = findViewById((R.id.button13));
+        graph2 = findViewById(R.id.button14);
     }
+
     private void getDatabase() {
         // TODO: Find the reference form the database.
         database = FirebaseDatabase.getInstance();
@@ -66,6 +82,7 @@ public class temperature extends AppCompatActivity {
         String path = "userdata/" + mAuth.getUid();  // read from the user account.
         myRef = database.getReference(path);
     }
+
 
     private void reterieveData() {
         // TODO: Get the data on a single node.
@@ -150,15 +167,29 @@ public class temperature extends AppCompatActivity {
                 Log.d("MapleLeaf", "Data Loading Canceled/Failed.", databaseError.toException());
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        //asdfghj
+           }
+    private void setupTitleandHomeButton() {
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public void opengraphTemp(){
+        Intent intent = new Intent(temperature.this, Firebase_Temp.class);
+        startActivity(intent);
+    }
+    public void opengraphHumidity(){
+        Intent intent = new Intent(temperature.this, Firebase_Humidity.class);
+        startActivity(intent);
+    }
 
 }

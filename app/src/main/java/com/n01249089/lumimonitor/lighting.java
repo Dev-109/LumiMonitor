@@ -46,6 +46,7 @@ public class lighting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lighting);
+        setupTitleandHomeButton();
         this.setTitle("Light Options & Adjustments");
         getDatabase();
         findAllViews();
@@ -56,7 +57,6 @@ public class lighting extends AppCompatActivity {
     private void findAllViews() {
         Light = findViewById(R.id.textView2);
         timestamp = findViewById(R.id.timestamp);
-        back = findViewById(R.id.button7);
         rgb = findViewById(R.id.button11);
     }
     private void getDatabase() {
@@ -147,18 +147,27 @@ public class lighting extends AppCompatActivity {
                 Log.d("MapleLeaf", "Data Loading Canceled/Failed.", databaseError.toException());
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
         rgb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(lighting.this, rgbSettings.class);
+                Intent intent = new Intent(lighting.this, colorpicker.class);
                 startActivity(intent);
             }
         });
+    }
+    private void setupTitleandHomeButton() {
+        getSupportActionBar().setSubtitle("Lighting Options");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

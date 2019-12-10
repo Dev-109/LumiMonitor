@@ -52,5 +52,10 @@
     <string name="imageDesc">TODO</string>
     <string name="speak">Activate Speaking channel</string>
     <string name="back">back</string>
+    <string name="HumidityGraph">Humidity Graph</string>
+    <string name="tempgraph">Temperature Graph</string>
+    <string name="save">Button</string>
+    <string name="Backgroundcolorvalues" />
+    <string name="title" />
 
 </resources>

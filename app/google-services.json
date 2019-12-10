@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "517695567950",
+    "firebase_url": "https://lumi-8b774.firebaseio.com",
+    "project_id": "lumi-8b774",
+    "storage_bucket": "lumi-8b774.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517695567950:android:e87a42f851cb3472c7eb1f",
+        "android_client_info": {
+          "package_name": "com.n01249089.lumimonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517695567950-n0nks6rjel15qdf1jd9ciqe2cg6osdkk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.n01249089.lumimonitor",
+            "certificate_hash": "fbf47d521671c6ceed73381369e229fac6a29a40"
+          }
+        },
+        {
+          "client_id": "517695567950-7ad5vaikg9bnk6aak4j7odqeasv8i5ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1SODP01w52zqgkMkQB2ExNb2iBbC0p7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517695567950-7ad5vaikg9bnk6aak4j7odqeasv8i5ml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
